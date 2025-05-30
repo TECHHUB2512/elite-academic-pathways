@@ -2,9 +2,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useAuth();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -27,7 +29,14 @@ const Navigation = () => {
             <Link to="/testimonials" className="text-gray-700 hover:text-blue-600 transition-colors">Testimonials</Link>
             <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors">Blog</Link>
             <Link to="/faq" className="text-gray-700 hover:text-blue-600 transition-colors">FAQ</Link>
-            <Link to="/contact" className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">Contact</Link>
+            {user ? (
+              <Link to="/dashboard" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Dashboard</Link>
+            ) : (
+              <>
+                <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</Link>
+                <Link to="/auth" className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">Login</Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -52,7 +61,14 @@ const Navigation = () => {
             <Link to="/testimonials" className="block px-3 py-2 text-gray-700 hover:text-blue-600" onClick={toggleMenu}>Testimonials</Link>
             <Link to="/blog" className="block px-3 py-2 text-gray-700 hover:text-blue-600" onClick={toggleMenu}>Blog</Link>
             <Link to="/faq" className="block px-3 py-2 text-gray-700 hover:text-blue-600" onClick={toggleMenu}>FAQ</Link>
-            <Link to="/contact" className="block px-3 py-2 bg-orange-500 text-white rounded-lg mx-3" onClick={toggleMenu}>Contact</Link>
+            {user ? (
+              <Link to="/dashboard" className="block px-3 py-2 bg-blue-600 text-white rounded-lg mx-3" onClick={toggleMenu}>Dashboard</Link>
+            ) : (
+              <>
+                <Link to="/contact" className="block px-3 py-2 text-gray-700 hover:text-blue-600" onClick={toggleMenu}>Contact</Link>
+                <Link to="/auth" className="block px-3 py-2 bg-orange-500 text-white rounded-lg mx-3" onClick={toggleMenu}>Login</Link>
+              </>
+            )}
           </div>
         </div>
       )}
