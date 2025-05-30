@@ -15,7 +15,7 @@ const Courses = () => {
         { type: "Evening Batch", time: "6:00 PM - 8:00 PM" },
         { type: "Weekend Batch", time: "Saturday & Sunday 9:00 AM - 1:00 PM" }
       ],
-      fee: "₹50,000/year",
+      fee: "₹80,000/year",
       features: [
         "Complete NCERT + Advanced Level Coverage",
         "Daily Practice Tests & Mock Exams",
